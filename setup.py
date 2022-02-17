@@ -10,7 +10,14 @@ with open("README.rst") as readme_file:
 with open("HISTORY.rst") as history_file:
     history = history_file.read()
 
-requirements = ["validators", "requests", "marshmallow_dataclass"]
+requirements = [
+    "importlib-resources",
+    "validators",
+    "requests",
+    "marshmallow_dataclass",
+    "kivy",
+    "kivymd",
+]
 
 test_requirements = [
     "pytest>=3",
@@ -43,4 +50,9 @@ setup(
     url="https://github.com/jayrod/ugy_inventory_client",
     version="0.1.0",
     zip_safe=False,
+    entry_points={
+        "console_scripts": [
+            "ugy = ugy_inventory_client.ui.main:main",
+        ],
+    },
 )

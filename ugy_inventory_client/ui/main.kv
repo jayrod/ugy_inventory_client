@@ -1,0 +1,443 @@
+#:kivy 1.7.2
+#:import Factory kivy.factory.Factory
+<Main>:
+    id:main_window
+    size_hint_x:1
+    size_hint_y:1
+    canvas.before:
+        Color:
+            rgba:(1,1,1,1)
+        Rectangle:
+            pos:self.pos
+            size:self.size
+    AnchorLayout:
+        id:main_box
+        orientation:"vertical"
+        anchor_x:"center"
+        anchor_y:"center"
+
+<FormBox@BoxLayout>
+    padding:1
+    spacing:1
+    canvas.before:
+        Color:
+            rgba:(1,1,1,1)
+        Rectangle:
+            pos:self.pos
+            size:self.size
+<BackgroundBox@BoxLayout>
+    padding:2
+    spacing:1
+    orientation:'vertical'
+    canvas.before:
+        Color:
+            rgba:(102/255,102/255,102/255,255/255)
+        RoundedRectangle:
+            pos:self.pos
+            size:self.size
+            radius:[10]
+
+
+#rounded button 
+<RoundedButton@Button>:
+    background_color: 0,0,0,0
+    background_normal:''
+    text_size:self.size
+    # bold: True
+    valign:'middle'
+    halign:'center'
+    font_size:20
+    canvas.before:
+        Color:
+            rgba:(255/255,255/255,102/255,255/255)if self.state=='normal' else (0,.7,.7,1) 
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [10]
+<Label@Label>
+    size_hint_x:1
+    size_hint_y:1
+    font_size:18
+    text_size:self.size
+    halign:'center'
+    valign:'center'
+    color:(255/255,255/255,102/255,255/255)
+<TextInput@TextInput>
+    background_normal:''
+    background_color:(255/255,255/255,102/255,255/255)
+    outline_color:
+    markup:True
+    multiline: False
+    text_size: self.size
+    valign:'middle'
+    halign:'left'
+    font_size:18
+    bold: True
+    # background_color: 0,0,0,0
+    foreground_color: 0,0,0,1
+
+
+#login_window
+<Login>:
+    id:login_window 
+    size_hint_x:1
+    size_hint_y:1
+    orientation:'vertical'
+    FormBox:
+        padding:2
+        BackgroundBox:
+            id:loginBox
+            size_hint_x:1
+            size_hint_y:1
+            orientation:'vertical'
+            padding:2
+            AnchorLayout:
+                anchor_x:'center'
+                anchor_y:'center'
+                BoxLayout:
+                    size_hint:None,None
+                    height:220
+                    width:280
+                    spacing:5
+                    orientation:'vertical'
+                    BoxLayout:
+                        orientation:'horizontal'
+                        Label:
+                            id: lbl_login_status
+                            text:''
+                    BoxLayout:
+                        orientation:'horizontal'
+                        size_hint:1,None
+                        height:50
+                        spacing:5
+                        Label:
+                            text:'Username'
+                            size_hint_x:.5
+                            size_hint_y:1
+                        TextInput:
+                            id:txt_username
+                            text:''
+                            size_hint_x:1
+                            size_hint_y:None
+                            height:40
+                    BoxLayout:
+                        orientation:'horizontal'
+                        size_hint:1,None
+                        height:50
+                        spacing:5
+                        Label:
+                            text:'Password'
+                            size_hint_x:.50
+                            size_hint_y:1
+                        TextInput:
+                            id:txt_password
+                            text:''
+                            size_hint_x:1
+                            size_hint_y:None
+                            height:40
+                            password: True
+                    BoxLayout:
+                        size_hint:1,None
+                        height:50
+                    AnchorLayout:
+                        anchor_y:'center'
+                        anchor_x:'center'
+                        BoxLayout:
+                            size_hint:.75,1
+                            RoundedButton:
+                                id:btn_login
+                                text:'Login'
+                                color:(0,0,0,1)
+                                on_press:root.login()
+                    
+                        
+# Remove form
+<RemoveForm>:
+    id:remove_form_window 
+    size_hint_x:1
+    size_hint_y:1
+    orientation:'vertical'
+    FormBox:
+        padding:2
+        BackgroundBox:
+            id:remove_formBox
+            size_hint_x:1
+            size_hint_y:1
+            orientation:'vertical'
+            padding:2
+            BoxLayout:
+                id:headings
+                size_hint_x:1
+                size_hint_y:None
+                height:140
+                orientation:'horizontal'
+                spacing:0
+                Button:
+                    size_hint:.7,.8
+                    background_normal: 'assets/arrow1.png'
+                    background_down: ''
+                    on_press:root.call_mainpage()
+                Label:
+                    text:'Removing yam from inventry'
+                    halign:'center'
+                    font_size:20
+               
+            BoxLayout:
+                orientation:'vertical'
+                size_hint_x:1
+                size_hint_y:None
+                height:5
+                canvas.before:
+                    Color:
+                        rgba:(255/255,255/255,102/255,255/255)
+                    Rectangle:
+                        pos:self.pos
+                        size:self.size
+                
+            BoxLayout:
+                size_hint_y:.4
+                size_hint_x:1
+                padding:10
+                orientation:'vertical'
+                BoxLayout:
+                    orientation:'horizontal'
+                    size_hint:1,None
+                    height:50
+                    spacing:5
+                    Label:
+                        text:'SKU'
+                        size_hint_x:.5
+                        size_hint_y:1
+                    TextInput:
+                        id:txt_sku
+                        text:'Line 1'
+                        size_hint_x:1
+                        size_hint_y:None
+                        height:40
+                BoxLayout:
+                    size_hint:1,None
+                    height:40
+                BoxLayout:
+                    orientation:'horizontal'
+                    size_hint:1,None
+                    height:50
+                    spacing:5
+                    Label:
+                        text:''
+                        size_hint_x:.5
+                        size_hint_y:1
+                    BoxLayout:
+                        id:spinner_box
+                        size_hint:1,.8
+                        padding:0
+                        canvas.before:
+                            Color:
+                                rgba:(1,1,1,1)
+                            Rectangle:
+                                pos:self.pos
+                                size:self.size
+                        # IconButton:
+                        #     id          : btn_icon
+                        #     text        : "Icon Button"
+                        #     bold        : True
+                        #     color       : (0, 0, 0, 1)
+                        #     font_size   : 19
+                        #     icon_source : "arrow.png"
+                        #     background_color : (1, 1,1,1)
+                        #     halign      : "left"
+                        #     valign      : "middle"
+                        #     on_press    : root.icon_button_pressed()
+                   
+                BoxLayout:
+                    size_hint:1,1
+        
+            BoxLayout:
+                size_hint_x:1
+                size_hint_y:.4
+                orientation:'vertical'
+                AnchorLayout:
+                    anchor_x:'center'
+                    anchor_y:'center'
+                    BoxLayout:
+                        size_hint_x:.5
+                        size_hint_y:.5
+                        orientation:'vertical'
+                        Label:
+                            text:'Remove 11 Skeins'
+                        Image:
+
+                            source:'assets/reload1.png'
+                        
+#add form
+<AddNew>:
+    id:add_window 
+    size_hint_x:1
+    size_hint_y:1
+    orientation:'vertical'
+    FormBox:
+        padding:2
+        BackgroundBox:
+            id:remove_formBox
+            size_hint_x:1
+            size_hint_y:1
+            orientation:'vertical'
+            padding:2
+            BoxLayout:
+                id:headings
+                size_hint_x:1
+                size_hint_y:None
+                height:140
+                orientation:'horizontal'
+                spacing:0
+                padding:2
+                Button:
+                    size_hint:.7,.8
+                    background_normal: 'assets/arrow1.png'
+                    background_down: ''
+                    # pos_hint: {"x":0.35, "y":0.3}
+                    on_press:root.call_mainpage()
+                Label:
+                    text:'Adding new yam to inventry'
+                    halign:'center'
+                    font_size:20
+               
+            BoxLayout:
+                orientation:'vertical'
+                size_hint_x:1
+                size_hint_y:None
+                height:5
+                canvas.before:
+                    Color:
+                        rgba:(255/255,255/255,102/255,255/255)
+                    Rectangle:
+                        pos:self.pos
+                        size:self.size
+                
+            BoxLayout:
+                size_hint_y:.7
+                size_hint_x:1
+                padding:10
+                spacing:5
+                orientation:'vertical'
+                BoxLayout:
+                    orientation:'horizontal'
+                    size_hint:1,None
+                    height:50
+                    spacing:5
+                    Label:
+                        text:'SKU'
+                        size_hint_x:.5
+                        size_hint_y:1
+                    TextInput:
+                        id:txt_sku
+                        text:'Line 1'
+                        size_hint_x:1
+                        size_hint_y:None
+                        height:40
+                BoxLayout:
+                    id:picture_box
+                    orientation:'horizontal'
+                    size_hint:1,1
+                    padding:2
+                    spacing:5
+                    canvas.before:
+                        Color:
+                            rgba:(1,1,1,1)
+                        Rectangle:
+                            pos:self.pos
+                            size:self.size
+                    Image:
+                        source:'assets/logo.png'
+
+                
+        
+            BoxLayout:
+                size_hint_x:1
+                size_hint_y:.3
+                orientation:'vertical'
+                BoxLayout:
+                    orientation:'vertical'
+                    size_hint_x:1
+                    size_hint_y:None
+                    height:5
+                    canvas.before:
+                        Color:
+                            rgba:(255/255,255/255,102/255,255/255)
+                        Rectangle:
+                            pos:self.pos
+                            size:self.size
+                BoxLayout:
+                    size_hint:1,1
+                    
+# main form
+<MainForm>:
+    id:main_window #from this size can be changed
+    size_hint_x:1
+    size_hint_y:1
+    orientation:'vertical'
+    FormBox:
+        padding:2
+        BackgroundBox:
+            id:main_box
+            size_hint_x:1
+            size_hint_y:1
+            orientation:'vertical'
+            padding:1
+            spacing:5
+            AnchorLayout:
+                anchor_x:'center'
+                anchor_y:'center'
+                GridLayout:
+                    size_hint:None,None
+                    cols:2
+                    height:320
+                    width:320
+                    spacing:30
+                    RoundedButton:
+                        id:btn_add_to
+                        text:'Add to'
+                        size_hint_y:None
+                        height:55
+                        font_size:17
+                        color:(0,0,0,1)
+                        on_press:root.add_inventry()
+                    RoundedButton:
+                        id:btn_remove_from
+                        text:'Remove From'
+                        size_hint_y:None
+                        height:55
+                        font_size:17
+                        color:(0,0,0,1)
+                        on_press:root.removeinventry()
+                    RoundedButton:
+                        id:btn_fill_orders
+                        text:'Fill Orders'
+                        size_hint_y:None
+                        height:55
+                        font_size:17
+                        color:(0,0,0,1)
+                    RoundedButton:
+                        id:btn_transfer
+                        text:'Transfer To Trunk'
+                        size_hint_y:None
+                        height:55
+                        font_size:17
+                        color:(0,0,0,1)
+                    RoundedButton:
+                        id:btn_add_user
+                        text:'Add User'
+                        size_hint_y:None
+                        height:55
+                        font_size:17
+                        color:(0,0,0,1)
+                    RoundedButton:
+                        id:btn_remove
+                        text:'Remove User'
+                        size_hint_y:None
+                        height:55
+                        font_size:17
+                        color:(0,0,0,1)
+
+
+
+
